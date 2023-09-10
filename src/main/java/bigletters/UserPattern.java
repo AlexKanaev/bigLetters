@@ -1,4 +1,4 @@
-package main.java.bigletters;
+package bigletters;
 
 public class UserPattern {
 
@@ -11,14 +11,24 @@ public class UserPattern {
     }
 
     public void showPatternParams() {
-        System.out.println("Letter width is: " + width + "\nLetter height is: " + height + "\nYour input text is: " + text);
+        System.out.println("Letter width is: " + getWidth() + "\nLetter height is: " + getHeight() + "\nYour input text is: " + getText());
     }
 
     public void setWidth(int width) {
+
+        if (width < Constants.MIN_WIDTH) {
+            throw new IllegalArgumentException("Width can't be less than " + Constants.MIN_WIDTH);
+        }
+
         this.width = width;
     }
 
     public void setHeight(int height) {
+
+        if (height < Constants.MIN_HEIGHT) {
+            throw new IllegalArgumentException("Height can't be less than " + Constants.MIN_HEIGHT);
+        }
+
         this.height = height;
     }
 
@@ -36,5 +46,9 @@ public class UserPattern {
 
     public String getText() {
         return text;
+    }
+
+    public boolean areParametersSet() {
+        return getWidth() != 0 && getHeight() != 0 && getText() != null;
     }
 }

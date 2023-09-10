@@ -1,4 +1,4 @@
-package main.java.bigletters;
+package bigletters;
 
 import java.util.HashMap;
 
@@ -9,7 +9,7 @@ public class Utils {
 
         for (int i = 0; i < rawInput.length; i++) {
 
-            for (int j = 0; j < rawInput[i].length() / 4; j++) {
+            for (int j = 0; j < rawInput[i].length() / width; j++) {
 
                 letters[i][j] = rawInput[i].substring(j * width, j * width + width);
             }
@@ -61,6 +61,9 @@ public class Utils {
             } else {
                 for (int k = 0; k < result.length; k++) {
 
+                    if (result[k] == null) {
+                        result[k] = new StringBuilder();
+                    }
                     result[k].append(lettersMap.get("?")[k]);
 
                 }
@@ -73,5 +76,13 @@ public class Utils {
         for (StringBuilder sb : result) {
             System.out.println(sb);
         }
+    }
+
+    public static boolean isExitOption(int option) {
+        return option == Constants.EXIT_OPTION;
+    }
+
+    public static boolean isValidOption(int option) {
+        return option >= Constants.EXIT_OPTION && option <= Constants.RESULT_OPTION;
     }
 }

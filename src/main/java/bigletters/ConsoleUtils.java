@@ -1,18 +1,21 @@
-package main.java.bigletters;
+package bigletters;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleUtils {
 
     public static int readInt(Scanner scanner, String message) {
         System.out.println(message);
-        int value = scanner.nextInt();
+        return scanner.nextInt();
+    }
 
-        if (value < 1) {
-            throw new IllegalArgumentException("Value can't be less than 1");
+    public static int readOption(Scanner scanner) {
+        int option = scanner.nextInt();
+        if (!Utils.isValidOption(option)) {
+            throw new InputMismatchException("Option should be greater or equal to 0 and less than 7");
         }
-
-        return value;
+        return option;
     }
 
     public static String readString(Scanner scanner, String message) {

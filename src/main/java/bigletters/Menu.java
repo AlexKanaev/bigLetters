@@ -1,4 +1,4 @@
-package main.java.bigletters;
+package bigletters;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -22,20 +22,20 @@ public class Menu {
     public static void doAction(int option, Scanner scanner) {
 
         switch (option) {
-            case 0 -> System.out.println("Program shutting down");
-            case 1 -> userPattern.setWidth(ConsoleUtils.readInt(scanner, "Please type in letter width: "));
-            case 2 -> userPattern.setHeight(ConsoleUtils.readInt(scanner, "Please type in letter height: "));
-            case 3 -> userPattern.setText(ConsoleUtils.readString(scanner, "Please type in your text: "));
-            case 4 -> savePattern(scanner, "Please type in your pattern: ");
-            case 5 -> userPattern.showPatternParams();
-            case 6 -> getResult(tempArray);
+            case Constants.EXIT_OPTION -> System.out.println("Program shutting down");
+            case Constants.WIDTH_OPTION -> userPattern.setWidth(ConsoleUtils.readInt(scanner, "Please type in letter width: "));
+            case Constants.HEIGHT_OPTION -> userPattern.setHeight(ConsoleUtils.readInt(scanner, "Please type in letter height: "));
+            case Constants.TEXT_OPTION -> userPattern.setText(ConsoleUtils.readString(scanner, "Please type in your text: "));
+            case Constants.PATTERN_OPTION -> savePattern(scanner, "Please type in your pattern: ");
+            case Constants.PARAMS_OPTION -> userPattern.showPatternParams();
+            case Constants.RESULT_OPTION -> getResult(tempArray);
         }
 
     }
 
     public static void savePattern(Scanner scanner, String message) {
 
-       if (userPattern.getHeight() < 1) {
+       if (userPattern.getHeight() < Constants.MIN_HEIGHT) {
            throw new IllegalArgumentException("You have to set valid height first");
        }
 
@@ -44,7 +44,7 @@ public class Menu {
     }
 
     public static void getResult(String[] tempArray) {
-        if (tempArray == null || userPattern.getWidth() == 0 || userPattern.getHeight() == 0 || userPattern.getText() == null) {
+        if (tempArray == null || !userPattern.areParametersSet()) {
             throw new IllegalArgumentException("You have to enter all parameters first");
         }
         String[][] array = Utils.createLettersArray(tempArray, userPattern.getWidth(), userPattern.getHeight());
