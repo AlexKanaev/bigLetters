@@ -41,21 +41,16 @@ public class Utils {
             String character = text.charAt(i) + "";
 
             if (lettersMap.containsKey(character)) {
-                for (String s : lettersMap.keySet()) {
 
-                    if (s.equals(character)) {
 
-                        for (int j = 0; j < height; j++) {
+                for (int j = 0; j < height; j++) {
 
-                            if (result[j] == null) {
-                                result[j] = new StringBuilder();
-                            }
-                            result[j].append(lettersMap.get(character)[j]);
-
-                        }
-
-                        break;
+                    if (result[j] == null) {
+                        result[j] = new StringBuilder();
                     }
+
+                    result[j].append(lettersMap.get(character)[j]);
+
                 }
 
             } else {
@@ -64,7 +59,7 @@ public class Utils {
                     if (result[k] == null) {
                         result[k] = new StringBuilder();
                     }
-                    result[k].append(lettersMap.get("?")[k]);
+                    result[k].append(lettersMap.get(Constants.UNKNOWN_SYMBOL)[k]);
 
                 }
             }

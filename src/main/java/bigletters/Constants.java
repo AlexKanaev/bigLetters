@@ -15,4 +15,6 @@ public class Constants {
     public static final int MIN_WIDTH = 1;
     public static final int MIN_HEIGHT = 1;
 
+    public static final String UNKNOWN_SYMBOL = "?";
+
 }
